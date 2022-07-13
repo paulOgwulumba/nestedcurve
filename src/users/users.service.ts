@@ -11,17 +11,13 @@ export class UsersService {
         @InjectModel('user') private userModel: Model<UserDocument>
     ) {}
 
+    async getUsers(): Promise<User[]> {
+        return this.userModel.find({}, "-password").exec()
+    }
 
-async getUsers(): Promise<User[]> {
-    return this.userModel.find({}, "-password").exec()
-}
-
-    
-async createUsers(user: typeof userDTO): Promise<User>{
-    const newUser = new this.userModel(user)
-    return await newUser.save()
-
-}
-
-
+    async createUsers(user: typeof userDTO): Promise<User>{
+        const newUser = new this.userModel({ ...user })
+        console.log(newUser)
+        return await newUser.save()
+    }
 }

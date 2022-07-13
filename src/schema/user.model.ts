@@ -2,9 +2,9 @@ import { Schema, SchemaFactory, Prop } from "@nestjs/mongoose";
 import * as mongoose from 'mongoose';
 
 
-export type UserDocument  = User & Document;
+export type UserDocument  = User & mongoose.Document;
 
-Schema()
+@Schema()
 export class User { 
     @Prop()
     email: string;
